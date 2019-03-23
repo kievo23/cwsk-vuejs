@@ -1,11 +1,11 @@
 <template>
-  <div id="app" class="page-wrapper chiller-theme toggled">
-    <app-sidebar></app-sidebar>
-      <main class="page-content">
-        <div class="container-fluid">
+  <div id="app" class="page-wrapper chiller-theme toggled layout">
+      <app-sidebar v-if='isAuth'></app-sidebar>
+      <div class="page-content container">
+        <div class="container-fluid p-5">
           <router-view/>
         </div>
-    </main>
+    </div>
   </div>
 </template>
 
@@ -15,7 +15,15 @@ export default {
   name: 'App',
   components: {
     'app-sidebar': sidebar
-  }
+  },
+  computed: {
+    token(){
+      return this.$store.state.token;
+    },
+    isAuth(){
+      return this.$store.state.isAuth;
+    }
+  },
 };
 </script>
 

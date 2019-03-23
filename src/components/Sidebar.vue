@@ -60,7 +60,7 @@
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fas fa-arrow-right"></i>
               <span>E-commerce</span>
               <span class="badge badge-pill badge-danger">3</span>
             </a>

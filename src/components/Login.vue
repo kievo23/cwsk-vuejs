@@ -1,5 +1,5 @@
 <template>
-  <div class="card w-25" id="login">
+  <div class="card w-50" id="login">
     <strong class="mb-9 mp-4 pt-3 text-primary">LOGIN</strong>
     <div class="card-body">
       <form >
@@ -45,14 +45,17 @@ export default {
           this.$http.post('auth/login', user)
           .then(response => {
             // JSON responses are automatically parsed.
-            console.log(response.status);
+            //console.log(response.status);
             if(response.status == 200){
               this.$toast.success({
                   title:'Success',
                   message:'You have been logged in'
               });
               //this.$router.go('/dashboard');
-              this.$router.push({name: 'Dashboard'})
+              this.$store.commit('updateKey',response.data.token);
+              this.$store.commit('updateAuth',true);
+              //console.log(this.$store.state.token);
+              this.$router.push({name: 'Dashboard'});
             }
             //this.posts = response.data
           })
