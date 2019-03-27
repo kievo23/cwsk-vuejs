@@ -5,12 +5,12 @@
       <form >
       <div class="form-group">
         <label for="email">Email address:</label>
-        <input type="email" class="form-control" id="email" v-model="email" name="email" v-validate="'required:true|email'">
+        <input type="email" class="form-control" id="email" v-model.lazy="email" name="email" v-validate="'required:true|email'">
         <div class="help-block alert alert-danger" v-show="errors.has('email')">{{errors.first('email')}}</div>
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" v-model="password" name="password" v-validate="'required:true|min:4'">
+        <input type="password" class="form-control" id="pwd" v-model.lazy="password" name="password" v-validate="'required:true|min:4'">
         <div class="help-block alert alert-danger" v-show="errors.has('password')">{{errors.first('password')}}</div>
       </div>
       <div class="form-group form-check">

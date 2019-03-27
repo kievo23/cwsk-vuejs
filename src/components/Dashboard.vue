@@ -1,25 +1,11 @@
 <template>
-  <div class="parlet w-25" id="dashboard">
-    {{token}}
-    <h2>Assets</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Tag</th>
-          <th>Cost</th>
-          <th>Created At</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="asset in assets">
-          <td>{{asset.name}}</td>
-          <td>{{asset.tag}}</td>
-          <td>{{asset.cost}}</td>
-          <td>{{asset.createdAt}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="parlet w-100" id="dashboard">
+    <h2>Dashboard</h2>
+    <div class='row'>
+      <div class="alert alert-success col-md-3 m-2" role="alert">Total Number of Assets: {{data.assets}}</div>
+      <div class="alert alert-info col-md-3 m-2" role="alert">Total Number of Tps: {{data.tps}}</div>
+      <div class="alert alert-warning col-md-3 m-2" role="alert">...</div>
+    </div>
   </div>
 </template>
 
@@ -28,7 +14,7 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      assets: []
+      data: []
     }
   },
   computed: {
@@ -45,19 +31,25 @@ export default {
   created(){
     //console.log(this.$store.state.test);
     //console.log(this.$store.state.token);
-    this.$http.get('assets', { headers: { 'Authorization': "bearer " + this.token }})
+    this.$http.get('reports', { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
       if(response.status == 200){
         console.log(response.data);
-        this.assets = response.data.assets;
+        this.data = response.data;
       }
     })
     .catch(e => {
-      console.log(e.response);
       this.$toast.error({
           title:'Error',
           message:e.response.data.msg
       });
+      if(e.response.status == 401){
+
+        this.$router.push({name: 'Dashboard'});
+      }else{
+        this.$router.push({name: 'Dashboard'});
+      }
+
       //this.errors.push(e);
     })
   }
