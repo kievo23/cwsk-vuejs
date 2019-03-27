@@ -458,6 +458,13 @@ body {
   background: transparent;
 }
 
+.TreeNavigation li {
+    text-align: left;
+}
+.TreeNavigation {
+    width: 100%;
+}
+
 
 
 </style>
