@@ -23,9 +23,11 @@ Vue.use(VeeValidate);
 Vue.use(VueTreeNavigation);
 
 const http = axios.create({
-  baseURL: 'http://cwsk-api.herokuapp.com'
+  baseURL: store.state.baseURL
   //baseURL: 'http://localhost:8080/'
 });
+
+
 
 Vue.prototype.$http = http;
 

@@ -1,22 +1,26 @@
 <template>
   <div class="parlet w-100" id="dashboard">
-    <h2>Assets</h2>
+    <h2>Temporary Places Of Residence (TPSs)</h2>
     <table class="table">
       <thead>
         <tr>
           <th>Name</th>
-          <th>Tag</th>
-          <th>Cost</th>
+          <th>Alias</th>
+          <th>Location</th>
+          <th>Address</th>
+          <th>Phone</th>
           <th>Created At</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="asset in assets">
-          <td>{{asset.name}}</td>
-          <td>{{asset.tag}}</td>
-          <td>{{asset.cost}}</td>
-          <td>{{asset.created_at}}</td>
+        <tr v-for="t in tps">
+          <td>{{t.name}}</td>
+          <td>{{t.alias}}</td>
+          <td>{{t.location}}</td>
+          <td>{{t.address}}</td>
+          <td>{{t.phone}}</td>
+          <td>{{t.created_at}}</td>
           <td>
             <router-link to="/login">
               <v-icon name="eye"/>
@@ -36,10 +40,10 @@
 
 <script>
 export default {
-  name: 'AllAssets',
+  name: 'Dashboard',
   data() {
     return {
-      assets: []
+      tps: []
     }
   },
   computed: {
@@ -56,10 +60,11 @@ export default {
   created(){
     //console.log(this.$store.state.test);
     //console.log(this.$store.state.token);
-    this.$http.get('assets', { headers: { 'Authorization': "bearer " + this.token }})
+    this.$http.get('tps', { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
       if(response.status == 200){
-        this.assets = response.data.assets;
+        console.log(response.data);
+        this.tps = response.data.tps;
       }
     })
     .catch(e => {

@@ -30,7 +30,6 @@
         <i class="fa fa-bell"></i>
         <span class="badge badge-pill badge-warning notification">3</span>
       </a>
-
     </div>
   </nav>
 </template>
@@ -42,10 +41,10 @@ export default {
             items: [
               { name: 'Dashboard', path: '/dashboard'},
               { name: 'Assets', path: '/assets', children: [
-                { name: 'new Asset', path: '/new'},
+                { name: 'New Asset', path: '/new'},
               ]},
               { name: 'Tps', path: '/tps', children: [
-                { name: 'new Tps', path: '/new'},
+                { name: 'New Tps', path: '/new'},
               ]},
             ],
           };
@@ -322,6 +321,7 @@ body {
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
   padding-left: 25px;
   font-size: 13px;
+  text-align: left;
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
@@ -349,6 +349,7 @@ body {
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .label {
   float: right;
   margin-top: 0px;
+  text-align: left;
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-submenu {
@@ -459,7 +460,7 @@ body {
 }
 
 .TreeNavigation li {
-    text-align: left;
+    text-align: left !important;
 }
 .TreeNavigation {
     width: 100%;

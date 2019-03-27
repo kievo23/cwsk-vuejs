@@ -4,6 +4,10 @@ import HelloWorld from '@/components/HelloWorld';
 import Login from '@/components/Login';
 import Dashboard from '@/components/Dashboard';
 import Assets from '@/components/assets/All';
+import NewAsset from '@/components/assets/Create';
+import EditAsset from '@/components/assets/Edit';
+import Tps from '@/components/tps/All';
+import NewTps from '@/components/tps/Create';
 
 Vue.use(Router);
 
@@ -22,19 +26,27 @@ export default new Router({
     {
       path: '/assets',
       name: 'Assets',
-      component: Assets,
-      children: [
-            { name: 'NewAssets', path: 'new' },
-            { name: 'UpdateAssets', path: 'update' }
-          ]
+      component: Assets
+    },
+    {
+      path: '/assets/new',
+      name: 'New Asset',
+      component: NewAsset
+    },
+    {
+      path: '/assets/edit',
+      name: 'Edit Asset',
+      component: EditAsset
     },
     {
       path: '/tps',
       name: 'Tps',
-      children: [
-            { name: 'NewTps', path: 'new' },
-            { name: 'UpdateTps', path: 'update' }
-          ]
+      component: Tps
+    },
+    {
+      path: '/tps/new',
+      name: 'Tps',
+      component: NewTps
     },
   ],
 });

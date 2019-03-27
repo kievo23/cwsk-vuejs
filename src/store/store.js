@@ -1,13 +1,44 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
-Vue.use(Vuex);
+Vue.use(Vuex,axios);
 
 export const store = new Vuex.Store({
   state: {
+    baseURL: 'http://cwsk-api.herokuapp.com',
     token: '',
     isAuth: false,
-    test: 'testing'
+    test: 'testing',
+    assettypes: null,
+    tps: null
+  },
+  actions: {
+    fetchAssetTypes({commit,state}){
+      axios.get(state.baseURL + '/types', { headers: { 'Authorization': "bearer " + state.token }})
+      .then(response => {
+        if(response.status == 200){
+          commit('set_types',response.data.types);
+          //console.log(response.data.types);
+        }
+      })
+      .catch(e => {
+        console.log(e.response);
+      })
+    },
+    fetchTps({commit,state}){
+      axios.get(state.baseURL+'/tps', { headers: { 'Authorization': "bearer " + state.token }})
+      .then(response => {
+        if(response.status == 200){
+          commit('set_tps',response.data.tps);
+        }
+      })
+      .catch(e => {
+        console.log( e.response );
+        if(e.response.status== 401){
+        }
+      })
+    }
   },
   mutations: {
     updateKey(state , newKey) {
@@ -15,6 +46,12 @@ export const store = new Vuex.Store({
     },
     updateAuth(state, status) {
       state.isAuth = status;
+    },
+    set_tps(state,tps) {
+      state.tps = tps;
+    },
+    set_types(state,types) {
+      state.assettypes = types;
     }
   }
 });
