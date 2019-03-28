@@ -1,6 +1,6 @@
 <template>
   <div class="card w-50" id="newasset">
-    <strong class="mb-9 mp-4 pt-3 text-primary">Create Support/Maintenance Record</strong>
+    <strong class="mb-9 mp-4 pt-3 text-primary">Create Valuation Record</strong>
     <div class="card-body">
       <form>
         <div class="form-group">
