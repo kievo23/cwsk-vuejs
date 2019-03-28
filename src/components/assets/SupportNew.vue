@@ -1,6 +1,6 @@
 <template>
   <div class="card w-50" id="newasset">
-    <strong class="mb-9 mp-4 pt-3 text-primary">Create Asset</strong>
+    <strong class="mb-9 mp-4 pt-3 text-primary">Create Support/Maintenance Record</strong>
     <div class="card-body">
       <form>
         <div class="form-group">
@@ -9,35 +9,23 @@
           <div class="help-block alert alert-danger" v-show="errors.has('name')">{{errors.first('name')}}</div>
         </div>
         <div class="form-group">
-          <label for="tag">Tag:</label>
-          <input type="text" class="form-control" id="tag" v-model.lazy="tag" name="tag" v-validate="'required:true|min:3'">
-          <div class="help-block alert alert-danger" v-show="errors.has('tag')">{{errors.first('tag')}}</div>
-        </div>
-        <div class="form-group">
           <label for="cost">Cost:</label>
           <input type="text" class="form-control" id="cost" v-model.lazy="cost" name="cost" v-validate="'required:true|min:3'">
           <div class="help-block alert alert-danger" v-show="errors.has('cost')">{{errors.first('cost')}}</div>
         </div>
         <div class="form-group">
-          <label for="valuation">Valuation:</label>
-          <input type="text" class="form-control" id="valuation" v-model.lazy="valuation" name="valuation" v-validate="'required:true|min:3'">
-          <div class="help-block alert alert-danger" v-show="errors.has('valuation')">{{errors.first('valuation')}}</div>
-        </div>
-        <div class="form-group">
-          <label for="valuation">Asset Type:</label>
-          <select name='type' class='form-control' v-model.lazy='type'>
-            <option >--select Type--</option>
-            <option v-for='t in assettypes' v-bind:value="t.id">{{ t.name}}</option>
+          <label for="valuation">Asset:</label>
+          <select name='assetId'  class='form-control' v-model.lazy='assetId'>
+            <option>--select Asset--</option>
+            <option v-for='asset in assets'  v-bind:value="asset.id">{{ asset.name}}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="valuation">Source Tps:</label>
-          <select name='tps'  class='form-control' v-model.lazy='tpsid'>
-            <option>--select Tps--</option>
-            <option v-for='t in tps'  v-bind:value="t.id">{{ t.name}}</option>
-          </select>
+          <label for="details">Details:</label>
+          <textarea class="form-control" id="details" v-model.lazy="details" name="details" v-validate="'required:true|min:3'"></textarea>
+          <div class="help-block alert alert-danger" v-show="errors.has('details')">{{errors.first('details')}}</div>
         </div>
-        <button class="btn btn-primary form-control" v-on:click.prevent="createAsset">Create</button>
+        <button class="btn btn-primary form-control" v-on:click.prevent="createSupport">Create</button>
       </form>
     </div>
   </div>
@@ -45,15 +33,13 @@
 
 <script>
 export default {
-  name: 'CreateAsset',
+  name: 'SupportNew',
   data() {
     return {
         name: '',
-        tag: '',
         cost: '',
-        valuation: '',
-        tpsid: '',
-        type: ''
+        details: '',
+        assetId: ''
     };
   },
   computed: {
@@ -63,39 +49,33 @@ export default {
     isAuth(){
       return this.$store.state.isAuth;
     },
-    tps() {
-      return this.$store.state.tps ;
-    },
-    assettypes() {
-      return this.$store.state.assettypes ;
+    assets() {
+      return this.$store.state.assets ;
     },
   },
   created() {
-    this.$store.dispatch('fetchAssetTypes');
-    this.$store.dispatch('fetchTps');
+    this.$store.dispatch('fetchAssets');
   },
   methods: {
-    createAsset: function(){
-      let asset = {
+    createSupport: function(){
+      let supportPayload = {
         name: this.name,
-        tag: this.tag,
         cost: this.cost,
-        valuation: this.valuation,
-        tps: this.tpsid,
-        type: this.type
+        details: this.details,
+        asset: this.assetId
       };
       //console.log(user);
       this.$validator.validateAll().then(valid => {
         if(valid){
           console.log(this.token);
-          this.$http.post('assets' , asset, { headers: { 'Authorization': "bearer " + this.token }})
+          this.$http.post('support' , supportPayload, { headers: { 'Authorization': "bearer " + this.token }})
           .then(response => {
             // JSON responses are automatically parsed.
             //console.log(response.status);
             if(response.status == 201){
               this.$toast.success({
                   title:'Success',
-                  message:'Asset Created Successfully'
+                  message:'Maintenance Cost Created Successfully'
               });
               //this.$router.go('/dashboard');
               //this.$store.commit('updateKey',response.data.token);

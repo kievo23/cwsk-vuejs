@@ -3,9 +3,15 @@ import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
 import Login from '@/components/Login';
 import Dashboard from '@/components/Dashboard';
+//ASSETS
 import Assets from '@/components/assets/All';
 import NewAsset from '@/components/assets/Create';
 import EditAsset from '@/components/assets/Edit';
+import AssetTypes from '@/components/assets/AssetTypes';
+import NewAssetType from '@/components/assets/NewAssetType';
+import NewSupport from '@/components/assets/SupportNew';
+import NewValuation from '@/components/assets/ValuationNew';
+//TPS
 import Tps from '@/components/tps/All';
 import NewTps from '@/components/tps/Create';
 
@@ -37,6 +43,26 @@ export default new Router({
       path: '/assets/edit',
       name: 'Edit Asset',
       component: EditAsset
+    },
+    {
+      path: '/assets/types',
+      name: 'AssetTypes',
+      component: AssetTypes
+    },
+    {
+      path: '/assets/types/new',
+      name: 'NewAssetType',
+      component: NewAssetType
+    },
+    {
+      path: '/assets/support',
+      name: 'NewSupport',
+      component: NewSupport
+    },
+    {
+      path: '/assets/valuation',
+      name: 'NewValuation',
+      component: NewValuation
     },
     {
       path: '/tps',

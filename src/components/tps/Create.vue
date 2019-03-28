@@ -100,10 +100,10 @@ export default {
           .then(response => {
             // JSON responses are automatically parsed.
             //console.log(response.status);
-            if(response.status == 200){
+            if(response.status == 201){
               this.$toast.success({
                   title:'Success',
-                  message:'Asset Created Successfully'
+                  message:'Tps Created Successfully'
               });
               //this.$router.go('/dashboard');
               //this.$store.commit('updateKey',response.data.token);

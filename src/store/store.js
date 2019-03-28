@@ -11,7 +11,8 @@ export const store = new Vuex.Store({
     isAuth: false,
     test: 'testing',
     assettypes: null,
-    tps: null
+    tps: null,
+    assets: null
   },
   actions: {
     fetchAssetTypes({commit,state}){
@@ -38,6 +39,19 @@ export const store = new Vuex.Store({
         if(e.response.status== 401){
         }
       })
+    },
+    fetchAssets({commit,state}){
+      axios.get(state.baseURL+'/assets', { headers: { 'Authorization': "bearer " + state.token }})
+      .then(response => {
+        if(response.status == 200){
+          commit('set_assets',response.data.assets);
+        }
+      })
+      .catch(e => {
+        console.log( e.response );
+        if(e.response.status== 401){
+        }
+      })
     }
   },
   mutations: {
@@ -52,6 +66,9 @@ export const store = new Vuex.Store({
     },
     set_types(state,types) {
       state.assettypes = types;
+    },
+    set_assets(state,assets) {
+      state.assets = assets;
     }
   }
 });

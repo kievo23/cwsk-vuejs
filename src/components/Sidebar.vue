@@ -42,6 +42,11 @@ export default {
               { name: 'Dashboard', path: '/dashboard'},
               { name: 'Assets', path: '/assets', children: [
                 { name: 'New Asset', path: '/new'},
+                { name: 'New Support', path: '/support'},
+                { name: 'New Valuation', path: '/valuation'},
+                { name: 'Asset Types', path: '/types', children: [
+                  { name: 'New Type', path: '/new'},
+                ]}
               ]},
               { name: 'Tps', path: '/tps', children: [
                 { name: 'New Tps', path: '/new'},
@@ -459,11 +464,12 @@ body {
   background: transparent;
 }
 
-.TreeNavigation li {
+.TreeNavigation li a {
     text-align: left !important;
 }
 .TreeNavigation {
     width: 100%;
+    text-align: left !important;
 }
 
 
