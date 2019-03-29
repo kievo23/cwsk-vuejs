@@ -33,6 +33,7 @@ export default {
   /* font-family: 'Roboto', sans-serif;
   font-family: 'Noto Sans', sans-serif;
   */
+  font-size: 1.4rem;
   font-family: 'Raleway', sans-serif;
   /*
   font-family: 'PT Sans', sans-serif;
@@ -44,5 +45,8 @@ export default {
   margin-top: 0px;
 }
 .form-group{
+}
+.form-control {
+  height: 3em;
 }
 </style>

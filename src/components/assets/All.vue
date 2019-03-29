@@ -18,10 +18,10 @@
           <td>{{asset.cost}}</td>
           <td>{{asset.created_at}}</td>
           <td>
-            <router-link to="/login">
+            <router-link :to="{ name: 'ViewAsset', params: { assetId: asset.id }}">
               <v-icon name="eye"/>
             </router-link>
-            <router-link to="/login">
+            <router-link to="/asset">
               <v-icon name="edit"/>
             </router-link>
             <router-link to="/login">
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'AllAssets',
+  name: 'Assets',
   data() {
     return {
       assets: []
@@ -58,17 +58,19 @@ export default {
     //console.log(this.$store.state.token);
     this.$http.get('assets', { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
+      console.log(response);
       if(response.status == 200){
         this.assets = response.data.assets;
       }
     })
     .catch(e => {
+      console.log(e.response);
       if(e.response.status == 401){
         this.$toast.error({
             title:'Error',
             message:e.response.data.msg
         });
-        this.$router.push({name: 'login'});
+        this.$router.push({name: 'Login'});
       }else{
 
       }

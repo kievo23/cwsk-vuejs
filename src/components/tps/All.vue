@@ -73,7 +73,7 @@ export default {
             title:'Error',
             message:e.response.data.msg
         });
-        this.$router.push({name: 'login'});
+        this.$router.push({name: 'Login'});
       }else{
 
       }

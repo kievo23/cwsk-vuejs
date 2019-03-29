@@ -9,8 +9,12 @@ import CxltToastr from 'cxlt-vue2-toastr';
 import VueTreeNavigation from 'vue-tree-navigation';
 import { store } from './store/store.js';
 
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import BootstrapVue from 'bootstrap-vue'
+
+//import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css';
 
 import 'vue-awesome/icons';
@@ -21,6 +25,7 @@ Vue.component('v-icon', Icon);
 Vue.use(CxltToastr, toastrConfigs);
 Vue.use(VeeValidate);
 Vue.use(VueTreeNavigation);
+//Vue.use(BootstrapVue);
 
 const http = axios.create({
   baseURL: store.state.baseURL

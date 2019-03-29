@@ -7,6 +7,7 @@ Vue.use(Vuex,axios);
 export const store = new Vuex.Store({
   state: {
     baseURL: 'http://cwsk-api.herokuapp.com',
+    //baseURL: 'http://localhost:3000',
     token: '',
     isAuth: false,
     test: 'testing',

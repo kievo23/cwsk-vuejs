@@ -4,7 +4,7 @@
     <div class='row'>
       <div class="alert alert-success col-md-3 m-2" role="alert">Total Number of Assets: {{data.assets}}</div>
       <div class="alert alert-info col-md-3 m-2" role="alert">Total Number of Tps: {{data.tps}}</div>
-      <div class="alert alert-warning col-md-3 m-2" role="alert">...</div>
+      <div class="alert alert-warning col-md-3 m-2" role="alert">Total Valuation: {{data.assetValuation[0].assettotalvalue}} KES </div>
     </div>
   </div>
 </template>
@@ -45,9 +45,9 @@ export default {
       });
       if(e.response.status == 401){
 
-        this.$router.push({name: 'Dashboard'});
+        this.$router.push({name: 'Login'});
       }else{
-        this.$router.push({name: 'Dashboard'});
+        this.$router.push({name: 'Login'});
       }
 
       //this.errors.push(e);

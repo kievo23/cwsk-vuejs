@@ -7,6 +7,7 @@ import Dashboard from '@/components/Dashboard';
 import Assets from '@/components/assets/All';
 import NewAsset from '@/components/assets/Create';
 import EditAsset from '@/components/assets/Edit';
+import AssetView from '@/components/assets/AssetView';
 import AssetTypes from '@/components/assets/AssetTypes';
 import NewAssetType from '@/components/assets/NewAssetType';
 import NewSupport from '@/components/assets/SupportNew';
@@ -33,6 +34,11 @@ export default new Router({
       path: '/assets',
       name: 'Assets',
       component: Assets
+    },
+    {
+      path: '/asset/:assetId',
+      name: 'ViewAsset',
+      component: AssetView
     },
     {
       path: '/assets/new',

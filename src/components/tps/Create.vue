@@ -119,6 +119,11 @@ export default {
                 title:'Error',
                 message:e.response.data.msg
             });
+            if(e.response.status == 401){
+              this.$router.push({name: 'Login'});
+            }else{
+
+            }
 
             //this.errors.push(e);
           })
