@@ -56,9 +56,17 @@ export default {
   created(){
     //console.log(this.$store.state.test);
     //console.log(this.$store.state.token);
+    this.$swal({
+      title: 'Please Wait ...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      onOpen: () => {
+        this.$swal.showLoading();
+      }
+    });
     this.$http.get('assets', { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
-      console.log(response);
+      this.$swal.close();
       if(response.status == 200){
         this.assets = response.data.assets;
       }

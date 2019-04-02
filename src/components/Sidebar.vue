@@ -67,7 +67,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
+.vsm-item a{
+    text-align: left;
+}
+.v-sidebar-menu .vsm-link {
+    text-align: left;
+}
 
 
 </style>

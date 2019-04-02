@@ -33,6 +33,9 @@ export default {
         password: ''
     };
   },
+  created(){
+    this.swal.close();
+  },
   methods: {
     login: function(){
       let user = {

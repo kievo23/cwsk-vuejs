@@ -52,10 +52,18 @@ export default {
   created(){
     //console.log(this.$store.state.test);
     //console.log(this.$store.state.token);
+    this.$swal({
+      title: 'Please Wait ...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      onOpen: () => {
+        this.$swal.showLoading();
+      }
+    });
     this.$http.get('insurancefirms', { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
+      this.$swal.close();
       if(response.status == 200){
-        console.log(response.data);
         this.insurancefirms = response.data.insuranceFirms;
       }
     })
