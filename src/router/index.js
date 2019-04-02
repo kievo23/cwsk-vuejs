@@ -12,6 +12,7 @@ import AssetTypes from '@/components/assets/AssetTypes';
 import NewAssetType from '@/components/assets/NewAssetType';
 import NewSupport from '@/components/assets/SupportNew';
 import NewValuation from '@/components/assets/ValuationNew';
+import Insurancefirms from '@/components/insurancefirms/All';
 //TPS
 import Tps from '@/components/tps/All';
 import NewTps from '@/components/tps/Create';
@@ -79,6 +80,11 @@ export default new Router({
       path: '/tps/new',
       name: 'Tps',
       component: NewTps
+    },
+    {
+      path: '/insurancefirms',
+      name: 'Insurances',
+      component: Insurancefirms
     },
   ],
 });

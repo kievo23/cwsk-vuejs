@@ -2,8 +2,10 @@
   <div id="app" class="page-wrapper chiller-theme toggled layout">
       <app-sidebar v-if='isAuth'></app-sidebar>
       <div class="page-content container">
-        <div class="container-fluid p-5">
-          <router-view/>
+        <div class="container-fluid py-3 pr-10 ">
+          <div class="main-content">
+            <router-view/>
+          </div>
         </div>
     </div>
   </div>
@@ -48,5 +50,17 @@ export default {
 }
 .form-control {
   height: 3em;
+}
+.main-content {
+    padding-left: 130px;
+}
+@media (min-width: 770px)
+.main-content {
+    padding-left: 130px;
+}
+
+@media (max-width: 769px)
+.main-content {
+    max-width: 100%;
 }
 </style>

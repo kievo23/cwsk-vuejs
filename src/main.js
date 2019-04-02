@@ -6,8 +6,9 @@ import router from './router';
 import axios from 'axios';
 import VeeValidate from 'vee-validate';
 import CxltToastr from 'cxlt-vue2-toastr';
-import VueTreeNavigation from 'vue-tree-navigation';
 import { store } from './store/store.js';
+import VueSidebarMenu from 'vue-sidebar-menu';
+
 
 //import BootstrapVue from 'bootstrap-vue'
 
@@ -16,6 +17,7 @@ import { store } from './store/store.js';
 
 
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css';
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css';
 
 import 'vue-awesome/icons';
 import Icon from 'vue-awesome/components/Icon';
@@ -24,7 +26,7 @@ Vue.component('v-icon', Icon);
 
 Vue.use(CxltToastr, toastrConfigs);
 Vue.use(VeeValidate);
-Vue.use(VueTreeNavigation);
+Vue.use(VueSidebarMenu);
 //Vue.use(BootstrapVue);
 
 const http = axios.create({
