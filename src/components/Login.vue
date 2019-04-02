@@ -34,7 +34,7 @@ export default {
     };
   },
   created(){
-    this.swal.close();
+    this.$swal.close();
   },
   methods: {
     login: function(){

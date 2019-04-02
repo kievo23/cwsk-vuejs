@@ -59,6 +59,10 @@ export default {
                 type: String,
                 default: '50px'
             },
+            theme: { // available themes: 'white-theme'
+                type: String,
+                default: 'white-theme'
+            },
           };
         },
 };
