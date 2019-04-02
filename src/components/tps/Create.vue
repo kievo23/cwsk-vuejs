@@ -101,15 +101,14 @@ export default {
             // JSON responses are automatically parsed.
             //console.log(response.status);
             if(response.status == 201){
-              this.$toast.success({
-                  title:'Success',
-                  message:'Tps Created Successfully'
+              this.$swal.fire({
+                type: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              }).then(rst => {
+                this.$router.push({name: 'Tps'});
               });
-              //this.$router.go('/dashboard');
-              //this.$store.commit('updateKey',response.data.token);
-              //this.$store.commit('updateAuth',true);
-              //console.log(this.$store.state.token);
-              this.$router.push({name: 'Tps'});
             }
             //this.posts = response.data
           })

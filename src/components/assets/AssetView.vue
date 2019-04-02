@@ -82,10 +82,19 @@ export default {
   },
   created() {
     console.log(this.token);
+    this.$swal({
+      title: 'Please Wait ...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      onOpen: () => {
+        this.$swal.showLoading();
+      }
+    });
     this.$http.get('assets/'+this.$route.params.assetId , { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
       // JSON responses are automatically parsed.
       //console.log(response.data);
+      this.$swal.close();
       if(response.status == 200){
         this.$toast.success({
             title:'Success',
