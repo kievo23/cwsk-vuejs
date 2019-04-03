@@ -1,6 +1,6 @@
 <template>
   <div class="card w-50" id="newasset">
-    <strong class="mb-9 mp-4 pt-3 text-primary">Create Support/Maintenance Record</strong>
+    <strong class="mb-9 mp-4 pt-3 text-primary">Create Insurance Record</strong>
     <div class="card-body">
       <form>
         <div class="form-group">
@@ -21,11 +21,18 @@
           </select>
         </div>
         <div class="form-group">
+          <label for="valuation">Insurance Firm:</label>
+          <select name='assetId'  class='form-control' v-model.lazy='insuranceId'>
+            <option>--select Insurance--</option>
+            <option v-for='ins in insuranceFirms'  v-bind:value="ins.id">{{ ins.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="details">Details:</label>
           <textarea class="form-control" id="details" v-model.lazy="details" name="details" v-validate="'required:true|min:3'"></textarea>
           <div class="help-block alert alert-danger" v-show="errors.has('details')">{{errors.first('details')}}</div>
         </div>
-        <button class="btn btn-primary form-control" v-on:click.prevent="createSupport">Create</button>
+        <button class="btn btn-primary form-control" v-on:click.prevent="createInsurance">Create</button>
       </form>
     </div>
   </div>
@@ -39,7 +46,8 @@ export default {
         name: '',
         cost: '',
         details: '',
-        assetId: ''
+        assetId: '',
+        insuranceId: ''
     };
   },
   computed: {
@@ -52,23 +60,28 @@ export default {
     assets() {
       return this.$store.state.assets ;
     },
+    insuranceFirms(){
+      return this.$store.state.insuranceFirms;
+    }
   },
   created() {
     this.$store.dispatch('fetchAssets');
+    this.$store.dispatch('fetchInsuranceFirms');
   },
   methods: {
-    createSupport: function(){
+    createInsurance: function(){
       let supportPayload = {
         name: this.name,
-        cost: this.cost,
+        cost: parseInt(this.cost),
         details: this.details,
-        asset: this.assetId
+        asset: this.assetId,
+        insuranceFirm: this.insuranceId
       };
       //console.log(user);
       this.$validator.validateAll().then(valid => {
         if(valid){
-          console.log(this.token);
-          this.$http.post('support' , supportPayload, { headers: { 'Authorization': "bearer " + this.token }})
+          //console.log(this.token);
+          this.$http.post('insurances' , supportPayload, { headers: { 'Authorization': "bearer " + this.token }})
           .then(response => {
             // JSON responses are automatically parsed.
             //console.log(response.status);
@@ -86,10 +99,15 @@ export default {
           })
           .catch(e => {
             console.log(e.response);
-            this.$toast.error({
-                title:'Error',
-                message:e.response.data.msg
-            });
+            if(e.response.status == 401){
+              this.$toast.error({
+                  title:'Error',
+                  message:e.response.data.msg
+              });
+              this.$router.push({name: 'Login'});
+            }else{
+
+            }
 
             //this.errors.push(e);
           })

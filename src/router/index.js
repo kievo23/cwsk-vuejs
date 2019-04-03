@@ -8,10 +8,15 @@ import Assets from '@/components/assets/All';
 import NewAsset from '@/components/assets/Create';
 import EditAsset from '@/components/assets/Edit';
 import AssetView from '@/components/assets/AssetView';
-import AssetTypes from '@/components/assets/AssetTypes';
-import NewAssetType from '@/components/assets/NewAssetType';
+
 import NewSupport from '@/components/assets/SupportNew';
 import NewValuation from '@/components/assets/ValuationNew';
+import NewInsurance from '@/components/assets/InsuranceNew';
+
+//ASSET TYPES
+import AssetTypes from '@/components/assets/AssetTypes';
+import NewAssetType from '@/components/assets/NewAssetType';
+//Insurance Firms
 import Insurancefirms from '@/components/insurancefirms/All';
 import NewInsurancefirm from '@/components/insurancefirms/Create';
 //TPS
@@ -71,6 +76,11 @@ export default new Router({
       path: '/assets/valuation',
       name: 'NewValuation',
       component: NewValuation
+    },
+    {
+      path: '/assets/insurance',
+      name: 'NewInsurance',
+      component: NewInsurance
     },
     {
       path: '/tps',

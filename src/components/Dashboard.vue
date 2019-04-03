@@ -4,7 +4,7 @@
     <div class='row'>
       <div class="alert alert-success col-md-3 m-2" role="alert">Total Number of Assets: {{data.assets}}</div>
       <div class="alert alert-info col-md-3 m-2" role="alert">Total Number of Tps: {{data.tps}}</div>
-      <div class="alert alert-warning col-md-3 m-2" role="alert">Total Valuation: {{data.assetValuation[0].assettotalvalue}} KES </div>
+      <div class="alert alert-warning col-md-3 m-2" role="alert">Total Valuation: {{data.assetValuation.assettotalvalue}} KES </div>
     </div>
   </div>
 </template>
@@ -14,7 +14,13 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      data: []
+      data: {
+        assets: null,
+        tps: null,
+        assetValuation: {
+          assettotalvalue: null
+        }
+      }
     }
   },
   computed: {
@@ -42,6 +48,7 @@ export default {
     this.$http.get('reports', { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
       this.$swal.close();
+      console.log(response.data);
       if(response.status == 200){
         this.data = response.data;
       }

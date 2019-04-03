@@ -28,6 +28,7 @@ export default {
                 { title: 'New Asset', href: '/assets/new'},
                 { title: 'New Support', href: '/assets/support'},
                 { title: 'New Valuation', href: '/assets/valuation'},
+                { title: 'New Insurance', href: '/assets/insurance'},
                 { title: 'Asset Types', href: '/assets/types', child: [
                   { title: 'New Type', href: '/assets/types/new'},
                 ]}

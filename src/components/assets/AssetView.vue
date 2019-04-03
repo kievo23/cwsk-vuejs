@@ -1,6 +1,6 @@
 <template>
   <div class="w-100" id="newasset" >
-    <div>
+    <div class="row">
       <div class="page-header">
         <strong class="mb-9 mp-4 pt-3 text-primary" v-show="loaded">Asset: {{ data.asset.name}}  <span class="label label-primary">{{data.asset.tag}}</span> </strong>
       </div>
@@ -25,31 +25,55 @@
         </div>
       </div>
     </div>
+    <div >
+      <b-card no-body>
+        <b-tabs v-model="tabIndex" card>
+          <b-tab title="Maintenance">
+            <div class="col-md-12">
+              <div class="panel-primary">
+                <h2><strong>Cummulative Maintenance</strong></h2>
+              </div>
+              <ul class="list-group panel">
+                <li class="list-group-item" v-for="s in data.supports">
+                  <p><strong>{{ s.name }}</strong></p>
+                   <span class="label label-info">Cost: {{s.cost}}</span>
+                   <p>{{s.details}}</p>
+                Created At: {{s.created_at}}</li>
+              </ul>
+            </div>
+          </b-tab>
+          <b-tab title="Insurance">
+            <div class="col-md-12">
+              <div class="panel-primary">
+                <h2><strong>Cummulative Insurance</strong></h2>
+              </div>
+              <ul class="list-group panel">
+                <li class="list-group-item" v-for="i in data.insurances">
+                  <p><strong>{{i.name}} </strong></p>
+                   <span class="label label-info">Insurance Cost: {{i.cost}}</span>
+                   <p>{{i.details}}</p>
+                   Created At: {{i.created_at}}</li>
+              </ul>
+            </div>
+          </b-tab>
+          <b-tab title="Valuation">
+            <div class="col-md-12">
+              <div class="panel-primary">
+                <h2><strong>Cummulative Valuations</strong></h2>
+              </div>
+              <ul class="list-group panel">
+                <li class="list-group-item" v-for="v in data.valuations">
+                  <p><strong> </strong></p>
+                   <span class="label label-info">Valuation: {{v.price_now}}</span>
+                   <p>{{v.details}}</p>
+                   Created At: {{v.created_at}}</li>
+              </ul>
+            </div>
+          </b-tab>
+        </b-tabs>
+      </b-card>
+    </div>
     <div class="row">
-      <div class="col-md-6">
-        <div class="panel-primary">
-          <h2><strong>Cummulative Valuations</strong></h2>
-        </div>
-        <ul class="list-group panel">
-          <li class="list-group-item" v-for="v in data.valuations">
-            <p><strong>{{ v.name }} </strong></p>
-             <span class="label label-info">Valuation: {{v.price_now}}</span>
-             <p>{{v.details}}</p>
-             Created At: {{v.created_at}}</li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <div class="panel-primary">
-          <h2><strong>Cummulative Maintenance</strong></h2>
-        </div>
-        <ul class="list-group panel">
-          <li class="list-group-item" v-for="s in data.supports">
-            <p><strong>{{ s.name }}</strong></p>
-             <span class="label label-info">Cost: {{s.cost}}</span>
-             <p>{{s.details}}</p>
-          Created At: {{s.created_at}}</li>
-        </ul>
-      </div>
     </div>
   </div>
 </template>
@@ -62,12 +86,18 @@ export default {
   name: 'ViewAsset',
   data() {
     return {
+        tabIndex: 1,
         data: {
           asset: {
-            name: null
+            name: null,
+            tag: null,
+            tp: {
+              name: null
+            }
           },
           valuations: {},
-          supports: {}
+          supports: {},
+          insurances: {}
         },
         loaded: false
     };
@@ -93,7 +123,7 @@ export default {
     this.$http.get('assets/'+this.$route.params.assetId , { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
       // JSON responses are automatically parsed.
-      //console.log(response.data);
+      console.log(response.data);
       this.$swal.close();
       if(response.status == 200){
         this.$toast.success({
@@ -142,6 +172,10 @@ a {
 }
 #newasset{
   margin: 0 auto;
-  margin-top:50px;
+  margin-top:0px;
+}
+.fade{
+  display: block;
+  opacity: 1;
 }
 </style>

@@ -9,12 +9,14 @@ import CxltToastr from 'cxlt-vue2-toastr';
 import { store } from './store/store.js';
 import VueSidebarMenu from 'vue-sidebar-menu';
 import VueSweetalert2 from 'vue-sweetalert2';
+import BootstrapVue from 'bootstrap-vue';
+
 
 
 //import BootstrapVue from 'bootstrap-vue'
 
-//import 'bootstrap/dist/css/bootstrap.css'
-//import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css';
@@ -29,6 +31,7 @@ Vue.use(CxltToastr, toastrConfigs);
 Vue.use(VeeValidate);
 Vue.use(VueSidebarMenu);
 Vue.use(VueSweetalert2);
+Vue.use(BootstrapVue);
 //Vue.use(BootstrapVue);
 
 const http = axios.create({

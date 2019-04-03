@@ -14,7 +14,7 @@
           <td>{{t.name}}</td>
           <td>{{t.created_at}}</td>
           <td>
-            <router-link to="/login">
+            <router-link :to="{ name: 'ViewAsset', params: { assetId: t.id }}">
               <v-icon name="eye"/>
             </router-link>
             <router-link to="/login">
@@ -35,7 +35,8 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      insurancefirms: []
+      insurancefirms: [],
+      insId: null
     }
   },
   computed: {

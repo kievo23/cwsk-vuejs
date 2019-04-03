@@ -52,14 +52,14 @@ export default {
             // JSON responses are automatically parsed.
             //console.log(response.status);
             if(response.status == 201){
-              
+
               this.$swal.fire({
                 type: 'success',
                 title: 'Your work has been saved',
                 showConfirmButton: false,
                 timer: 1500
               }).then(rst => {
-                this.$router.push({name: 'AssetsTypes'});
+                this.$router.push({name: 'AssetTypes'});
               });
             }
             //this.posts = response.data

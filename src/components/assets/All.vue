@@ -67,6 +67,7 @@ export default {
     this.$http.get('assets', { headers: { 'Authorization': "bearer " + this.token }})
     .then(response => {
       this.$swal.close();
+      console.log(response.data);
       if(response.status == 200){
         this.assets = response.data.assets;
       }

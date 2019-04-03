@@ -13,7 +13,8 @@ export const store = new Vuex.Store({
     test: 'testing',
     assettypes: null,
     tps: null,
-    assets: null
+    assets: null,
+    insuranceFirms: null
   },
   actions: {
     fetchAssetTypes({commit,state}){
@@ -53,6 +54,19 @@ export const store = new Vuex.Store({
         if(e.response.status== 401){
         }
       })
+    },
+    fetchInsuranceFirms({commit,state}){
+      axios.get(state.baseURL+'/insurancefirms', { headers: { 'Authorization': "bearer " + state.token }})
+      .then(response => {
+        if(response.status == 200){
+          commit('set_insuranceFirms',response.data.insuranceFirms);
+        }
+      })
+      .catch(e => {
+        console.log( e.response );
+        if(e.response.status== 401){
+        }
+      })
     }
   },
   mutations: {
@@ -70,6 +84,9 @@ export const store = new Vuex.Store({
     },
     set_assets(state,assets) {
       state.assets = assets;
+    },
+    set_insuranceFirms(state,firms) {
+      state.insuranceFirms = firms;
     }
   }
 });
